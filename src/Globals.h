@@ -51,7 +51,7 @@ const int INTRO_BUTTON_H=59;
 const int PULLS_W = 60;
 const int PULLS_H = 60;
 
-const int COIN_COUNT =10;
-const int COIN_W=59;
-const int COIN_H=59;
+const int COIN_COUNT =20;
+const int COIN_W=110;
+const int COIN_H=110;
 #endif /* GLOBALS_H_ */
