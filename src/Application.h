@@ -33,7 +33,8 @@ public:
 	void GamePlay();
 	void SpinRoulette(int);//some argument time , sector , velocity
 	bool spinBall();
-	bool WinAnimation(int);
+
+	bool WinAnimation();
 	virtual ~Application();
 
 	GameState getMenuState() const;
@@ -67,7 +68,7 @@ private:
 
 	Background *outro;// Animation who backs to Intro 10 sec;
 	Background *win;// animation 6 seconds
-	LTexture *coin;
+	LTexture *coin [COIN_COUNT];
 	//TODO OTHER BUTTONS;
 
 
