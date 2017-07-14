@@ -109,9 +109,9 @@ void Application::initOutro()
 void Application::initWin()
 {
 	MenuState=WIN;
-	win= new Background("Win",SCREEN_ROULETTE_W,SCREEN_ROULETTE_H,"INTRO SCREEN.jpg");
+	win= new Background("Win",SCREEN_ROULETTE_W,SCREEN_ROULETTE_H,"CoinBag.png");
 	for(int i=0 ; i<COIN_COUNT ; i++){
-		coin[i] =new LTexture(100,30*i);
+		coin[i] =new LTexture(rand()%200+100,rand()%SCREEN_ROULETTE_W);
 		coin[i]->loadFromFile(Background::gRenderer,"coin.png");
 		coin[i]->setWidth(COIN_W);
 		coin[i]->setHeight(COIN_H);
@@ -326,7 +326,7 @@ bool Application::WinAnimation()
 {
 	cout<<"START"<<endl;
 	short int timeout=6000;
-	int speedOfMove=1;
+	int speedOfMove=10;
 	SDL_Rect goldCoin ={0,0,COIN_W,COIN_H} ;
 	SDL_Rect goldCoin1 ={110,0,COIN_W,COIN_H} ;
 	SDL_Rect goldCoin2 ={220,0,COIN_W,COIN_H} ;
@@ -336,14 +336,15 @@ bool Application::WinAnimation()
 	SDL_Rect goldCoin6 ={660,0,COIN_W,COIN_H} ;
 	SDL_Rect goldCoin7 ={770,0,COIN_W,COIN_H} ;
 	SDL_Rect goldCoin8 ={880,0,COIN_W,COIN_H} ;
-	SDL_Rect goldCoin9 ={990,0,COIN_W,COIN_H} ;
 
 while (!SDL_TICKS_PASSED(SDL_GetTicks(), timeout))
 	  {
 
 		  	for(int i =0 ; i<COIN_COUNT; i++){
-		  	win->Show();
-			coin[i]->setX(speedOfMove);
+//		  	win->Show();
+			coin[i]->setX(rand()%370+90);
+			coin[i]->setY(rand()%100+0);
+
 			speedOfMove+=4;
 			if(speedOfMove>=0)
 				{
@@ -384,7 +385,7 @@ while (!SDL_TICKS_PASSED(SDL_GetTicks(), timeout))
 
 
 			cout<<"Speed of move"<<speedOfMove<<endl;
-			SDL_Delay(29);
+			SDL_Delay(80);
 }
 	  }
 return true;
