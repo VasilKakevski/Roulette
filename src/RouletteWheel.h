@@ -1,36 +1,24 @@
 /*
  * RouletteWheel.h
  *
- *  Created on: 5.07.2017 ã.
- *      Author: Viktor
+ *  Created on: Jul 13, 2017
+ *      Author: kakev
  */
 
 #ifndef ROULETTEWHEEL_H_
 #define ROULETTEWHEEL_H_
-
-#include "SDL2/SDL.h"
-#include "SDL2/SDL_image.h"
-#include <ctime>
-
-const int RADIUS_OF_ROULETTE = 50; // ???
-const int RADIUS_OF_NUMBER_RING = 30; // ???
-
-class RouletteWheel
-{
+#include "LTexture.h"
+#include "Background.h"
+#include <map>
+class RouletteWheel :public LTexture{
 public:
-	RouletteWheel();
+	RouletteWheel(int _x,int _y);
 	virtual ~RouletteWheel();
-
-	void spin(); // spin roulette and ball
-				 // from outerRing to numberRing
-	int winningNumber(); // rand() % 37;
-
-
+	void Spin();
 private:
-	SDL_Texture* ball;
-	SDL_Texture* roulette;
+	bool isFinish;
+	map<int,double> wheelSectors;
 
-	void spinBall();
 };
 
 #endif /* ROULETTEWHEEL_H_ */
