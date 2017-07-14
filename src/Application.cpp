@@ -109,15 +109,13 @@ void Application::initOutro()
 void Application::initWin()
 {
 	MenuState=WIN;
-	win= new Background("Win",SCREEN_ROULETTE_W,SCREEN_ROULETTE_H,"chessFigures.png");
+	win= new Background("Win",SCREEN_ROULETTE_W,SCREEN_ROULETTE_H,"INTRO SCREEN.jpg");
 
 		coin= new LTexture(100,100);
 		coin->loadFromFile(Background::gRenderer,"coin.png");
 		coin->setWidth(COIN_W);
 		coin->setHeight(COIN_H);
-
-
-
+		WinAnimation();
 
 }
 
@@ -223,9 +221,8 @@ void Application::GamePlay()
 
 				break;
 			case WIN:
-				if(false==WinAnimation(3)){
-					close=true;
-				}
+
+
 				break;
 			default:
 				break;
@@ -293,6 +290,23 @@ void Application::Free()
 		roulette->Clear();
 		wheel->Free();
 		ball->Free();
+		SDL_RenderClear(Background::gRenderer);
+		SDL_DestroyWindow(gWindow);
+		gWindow = NULL;
+		Background::gRenderer = NULL;
+		IMG_Quit();
+		SDL_Quit();
+	}
+	if(MenuState== WIN)
+	{
+		win->Clear();
+		coin->Free();
+		SDL_RenderClear(Background::gRenderer);
+		SDL_DestroyWindow(gWindow);
+		gWindow = NULL;
+		Background::gRenderer = NULL;
+		IMG_Quit();
+		SDL_Quit();
 	}
 }
 
@@ -303,20 +317,71 @@ GameState Application::getMenuState() const
 	return MenuState;
 }
 
-bool Application::WinAnimation(int speedOfMove)
+bool Application::WinAnimation()
+
 {
+	cout<<"START"<<endl;
+	short int timeout=6000;
 
+	int speedOfMove=1;
 	SDL_Rect goldCoin ={10,12,COIN_W,COIN_H} ;
-	win->Show();
+	SDL_Rect goldCoin1={69,12,COIN_W,COIN_H};
+	SDL_Rect goldCoin2={128,12,COIN_W,COIN_H};
+	SDL_Rect goldCoin3={187,11,COIN_W,COIN_H};
+	SDL_Rect goldCoin4={246,11,COIN_W,COIN_H};
+	SDL_Rect goldCoin5={305,11,COIN_W,COIN_H};
+	SDL_Rect goldCoin6={364,11,COIN_W,COIN_H};
+	SDL_Rect goldCoin7={403,11,COIN_W,COIN_H};
+	SDL_Rect goldCoin8={462,11,COIN_W,COIN_H};
+	SDL_Rect goldCoin9={521,11,COIN_W,COIN_H};
 
-	while(coin->getX()<SCREEN_ROULETTE_W)
-	{
+	  while (!SDL_TICKS_PASSED(SDL_GetTicks(), timeout))
+	  {
+
+		  	win->Show();
 			coin->render(Background::gRenderer,&goldCoin);
 			coin->setX(speedOfMove);
-			coin->getY();
+			speedOfMove+=5;
+				if(speedOfMove>=100)
+				{
+					coin->render(Background::gRenderer,&goldCoin1);
+				}
+				if(speedOfMove>=200)
+				{
+					coin->render(Background::gRenderer,&goldCoin2);
+				}
+				if(speedOfMove>=300)
+				{
+					coin->render(Background::gRenderer,&goldCoin3);
+				}
+				if(speedOfMove>=400)
+				{
+					coin->render(Background::gRenderer,&goldCoin4);
+				}
+				if(speedOfMove>=500)
+				{
+					coin->render(Background::gRenderer,&goldCoin5);
+				}
+				if(speedOfMove>=600)
+				{
+					coin->render(Background::gRenderer,&goldCoin6);
+				}if(speedOfMove>=700)
+				{
+					coin->render(Background::gRenderer,&goldCoin7);
+				}
+				if(speedOfMove>=800)
+				{
+					coin->render(Background::gRenderer,&goldCoin8);
+				}
+				if(speedOfMove>=900)
+				{
+					coin->render(Background::gRenderer,&goldCoin9);
+				}
 
-	}
+			cout<<"Speed of move"<<speedOfMove<<endl;
+			SDL_Delay(30);
 
+	  }
 
-return false;
+return true;
 }
